@@ -1,13 +1,31 @@
 using System;
+using nothinbutdotnetstore.web.application.stubs;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.application.catalogbrowsing
 {
     public class ViewTheDepartmentsInADepartment  :ApplicationBehaviour
     {
+        RenderingGateway rendering_gateway;
+        DepartmentRepository department_repository;
+        DepartmentFactory department_factory;
+         
+
+        public ViewTheDepartmentsInADepartment() : this(Stub.with<StubRenderingGateway>(), Stub.with<StubDepartmentsRepository>(), Stub.with<StubDepartmentFactory>())
+        {
+        }
+
+        public ViewTheDepartmentsInADepartment(RenderingGateway rendering_gateway, DepartmentRepository department_repository, DepartmentFactory department_factory)
+        {
+            this.rendering_gateway = rendering_gateway;
+            this.department_factory = department_factory;
+            this.department_repository = department_repository;
+        }
+
         public void process(Request request)
         {
-            throw new NotImplementedException();
+            rendering_gateway.render(department_repository.get_sub_departments_for(department_factory.create_from(request)));
         }
     }
 }
