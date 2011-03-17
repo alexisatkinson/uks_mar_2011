@@ -9,14 +9,14 @@ namespace nothinbutdotnetstore.web.application.catalogbrowsing
         RenderingGateway rendering_gateway;
         ViewRepositoryQuery<ReportModel> query;
 
-        public ViewAReportModel(ViewRepositoryQuery<ReportModel> query) : this(new WebFormRenderer(), query)
+        public ViewAReportModel(ViewRepositoryQuery<ReportModel> query) : this(query, new WebFormRenderer())
         {
         }
 
-        public ViewAReportModel(RenderingGateway rendering_gateway, ViewRepositoryQuery<ReportModel> query)
+        public ViewAReportModel(ViewRepositoryQuery<ReportModel> query, RenderingGateway rendering_gateway)
         {
-            this.rendering_gateway = rendering_gateway;
             this.query = query;
+            this.rendering_gateway = rendering_gateway;
         }
 
         public void process(Request request)
