@@ -2,9 +2,10 @@
 {
     public class CommandUrl
     {
-        public static string to_run<Behaviour>() where Behaviour : ApplicationBehaviour
+        
+        public static DefaultCommandUrlBuilder to_run<Behaviour>() where Behaviour : ApplicationBehaviour
         {
-            return string.Format("{0}.uk", typeof(Behaviour).Name);
+            return new DefaultCommandUrlBuilder(string.Format("{0}.uk", typeof(Behaviour).Name));
         }
     }
 }

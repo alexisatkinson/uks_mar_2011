@@ -1,3 +1,4 @@
+using System;
 using developwithpassion.specifications.rhino;
 using Machine.Specifications;
 using nothinbutdotnetstore.web.core;
@@ -14,9 +15,21 @@ namespace nothinbutdotnetstore.specs
         [Subject(typeof(CommandUrl))]
         public class when_requesting_a_url_for_a_given_command : concern
         {
-            It should_return_the_correct_url =
-                () => { CommandUrl.to_run<SomeBehaviour>().ShouldEqual("SomeBehaviour.uk"); };
+            
+
+            It it_should_return_a_command_builder =
+                () => { CommandUrl.to_run<SomeBehaviour>().ShouldBeOfType<DefaultCommandUrlBuilder>(); };
         }
+
+        [Subject(typeof(CommandUrl))]
+        public class when_requesting_command_builder_a_given_command : concern
+        {
+            
+        }
+
+        
+            
+
 
         class SomeBehaviour : ApplicationBehaviour
         {
